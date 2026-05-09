@@ -101,6 +101,9 @@
 ## Code Examples Index
 *(References to saved code examples)*
 
+## Knowledge Artifacts Index
+- 2026-05-08: `nestjs-learning/knowledge-base/2026-05-08-nestjs-foundations/README.md`
+
 ---
 
 ## Key Insights & Patterns Discovered
@@ -110,3 +113,49 @@
 
 ## Topics Pending
 - 🔄 TypeScript Decorators (deep dive — foundation for everything)
+
+---
+
+## Session History
+
+### Session 1 — NestJS Foundations: What, Why, Problems, Capabilities
+- **Date**: 2026-05-08
+- **Summary**:
+  - Covered what NestJS is and why it was created
+  - Explained core principles: modular architecture, dependency injection, separation of concerns
+  - Mapped Node ecosystem problem (no standard architecture) to NestJS solution
+  - Covered key capabilities: REST, GraphQL, WebSockets, microservices, guards, pipes, interceptors, filters
+  - Compared ExpressJS vs Spring Boot vs NestJS mental model
+- **Progress Update**:
+  - ✅ NestJS introduction (what/why/problem/capabilities)
+  - 🔄 Next: NestJS Architecture deep dive (Module, Controller, Provider relationship)
+
+## Concepts Mastered
+- ✅ NestJS purpose and design philosophy
+- ✅ Why NestJS solves backend architecture standardization problems in Node.js
+
+## Express → NestJS Mappings
+- Express app structure (routes/services/middleware by convention) → NestJS explicit architecture via Module/Controller/Provider
+- Manual dependency wiring in Express → IoC + DI container in NestJS
+
+## Open Questions
+- How exactly Module, Controller, and Provider collaborate at runtime through the DI container?
+
+---
+
+### Session 2 — TypeScript Decorators Deep Dive
+- **Date**: 2026-05-09
+- **Summary**:
+  - Covered what decorators are and why they exist in TypeScript
+  - Covered decorator types: class, method, accessor, property, parameter
+  - Covered execution/evaluation order and descriptor-based behavior changes
+  - Covered compiler flags: experimentalDecorators and emitDecoratorMetadata
+  - Covered NestJS custom decorator patterns with SetMetadata and createParamDecorator
+- **Artifacts**:
+  - `nestjs-learning/knowledge-base/2026-05-09-typescript-decorators/typescript-decorators-deep-dive.md`
+- **Progress Update**:
+  - ✅ TypeScript decorators foundation and custom decorator creation
+  - 🔄 Next: implement decorators in a mini feature module (guard + interceptor + param decorator)
+
+## Knowledge Artifacts Index
+- 2026-05-09: `nestjs-learning/knowledge-base/2026-05-09-typescript-decorators/typescript-decorators-deep-dive.md`
