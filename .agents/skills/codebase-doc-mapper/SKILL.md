@@ -166,6 +166,61 @@ Keep diagrams readable — for very large fan-out, show the most important
 relationships rather than every single edge, and say so in the surrounding
 text.
 
+### API functions: add an example data-flow diagram
+
+For any function that is API-related (an HTTP handler, route function,
+RPC endpoint, controller action, request/response processor, etc.),
+include an **additional** diagram beyond the structural dependency graph:
+a concrete, made-up-but-realistic example showing input → processing →
+output, with actual example values, not just types.
+
+This means:
+- **Input parameters**: a sample request — the actual parameter names and
+  example values (e.g. from the URL/query/body/headers, whatever the
+  function actually reads).
+- **Manipulation / processing steps**: the key transformations the
+  function performs on that input, in order (validation, lookups,
+  calculations, calls to other functions/services).
+- **Output**: the resulting response — its shape and example values.
+- **Payload / schema**: show the structure (field names and types) of
+  both the input and output payloads, not just one example value.
+
+Use a Mermaid `flowchart` (or `sequenceDiagram` if the flow involves
+multiple files/services talking to each other) with the example data
+embedded directly in the node labels. Example:
+
+```mermaid
+flowchart TD
+    A["Input payload<br/>POST /users/create<br/>{ name: 'Alice', email: 'alice@example.com', age: 29 }"] --> B["Validate fields<br/>(name non-empty, email format, age >= 18)"]
+    B --> C["Hash password / assign default role"]
+    C --> D["Insert into DB<br/>users table"]
+    D --> E["Build response payload"]
+    E --> F["Output payload<br/>201 Created<br/>{ id: 'usr_001', name: 'Alice', email: 'alice@example.com', role: 'member' }"]
+
+    subgraph "Input schema"
+    S1["name: string<br/>email: string<br/>age: number"]
+    end
+    subgraph "Output schema"
+    S2["id: string<br/>name: string<br/>email: string<br/>role: string"]
+    end
+```
+
+Rules for this diagram:
+- The example values must be plausible and consistent with what the
+  function's actual code does — do not invent fields the code doesn't
+  use or return.
+- Keep the input/output schema subgraphs simple: field name and type
+  only, one line per field (or grouped if there are many).
+- Place this diagram directly below the function's entry in "Key
+  functions / types" (or below the per-file dependency diagram if the
+  whole file is essentially one API handler), not in place of the
+  structural dependency diagram — both are useful for different reasons.
+- If a file has multiple API-related functions, add one such diagram per
+  function, each clearly labeled with the function name above it.
+- Skip this for non-API functions (pure helpers, internal utilities,
+  data models with no request/response boundary) — it only applies where
+  there's a real input-payload/output-payload boundary worth illustrating.
+
 ## Step 7 — Wrap up
 
 - Report to the user: how many source files were documented, how many
