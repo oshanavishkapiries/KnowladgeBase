@@ -1,9 +1,0 @@
-{
-  "name": "manim-animator-skill",
-  "version": "1.0.0",
-  "description": "Manim Animation Engine Skill",
-  "scripts": {
-    "setup": "bash scripts/setup_manim.sh",
-    "render": "node scripts/render.js"
-  }
-}
